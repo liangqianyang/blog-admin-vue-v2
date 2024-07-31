@@ -1,8 +1,8 @@
 {
-  "name": "vue-element-plus-admin",
+  "name": "blog-admin",
   "version": "2.5.6",
-  "description": "一套基于vue3、element-plus、typesScript、vite4的后台集成方案。",
-  "author": "Archer <502431556@qq.com>",
+  "description": "一套基于vue3、element-plus、typesScript、vite4搭建的后台管理系统",
+  "author": "Leo <543492227@qq.com>",
   "private": false,
   "scripts": {
     "i": "pnpm install",
