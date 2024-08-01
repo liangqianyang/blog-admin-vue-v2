@@ -17,7 +17,7 @@ const adminList = [
       {
         path: 'menu',
         name: '菜单管理',
-        component: 'views/menu/index',
+        component: 'views/Menu/Index',
         meta: {
           title: '菜单管理'
         }
@@ -25,7 +25,7 @@ const adminList = [
       {
         path: 'permission',
         name: '权限管理',
-        component: 'views/permission/index',
+        component: 'views/Permission/Index',
         meta: {
           title: '权限管理'
         }

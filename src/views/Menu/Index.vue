@@ -2,7 +2,7 @@
   <el-form :model="ruleForm" label-width="auto" ref="ruleFormRef">
     <el-row :gutter="10">
       <el-col :span="6">
-        <el-form-item prop="name" label="菜单名称"
+        <el-form-item prop="name" label="权限名称"
           ><el-input clearable v-model="ruleForm.name"
         /></el-form-item>
       </el-col>
