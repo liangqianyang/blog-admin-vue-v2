@@ -63,7 +63,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
     name: '系统设置',
     meta: {
       title: '系统设置',
-      icon: 'carbon:skill-level-advanced'
+      icon: 'carbon:setting-outlined'
     },
     children: [
       {

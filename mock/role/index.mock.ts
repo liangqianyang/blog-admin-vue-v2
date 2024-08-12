@@ -11,7 +11,7 @@ const adminList = [
     name: 'Level',
     meta: {
       title: '系统设置',
-      icon: 'carbon:skill-level-advanced'
+      icon: 'carbon:settings'
     },
     children: [
       {
