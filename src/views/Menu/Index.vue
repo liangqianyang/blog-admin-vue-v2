@@ -15,6 +15,7 @@
     </el-row>
   </el-form>
   <el-table
+    v-loading="loading"
     ref="tableRef"
     :data="tableData"
     stripe
@@ -60,7 +61,8 @@ import {
   FormInstance,
   TableInstance
 } from 'element-plus'
-import { reactive, ref } from 'vue'
+import { reactive, ref, onMounted } from 'vue'
+import { Menu } from '../../api/menu/types'
 
 defineOptions({
   name: '菜单管理'
@@ -76,16 +78,36 @@ const searchForm = reactive<SearchForm>({
   state: 0
 })
 
+const tableRef = ref<TableInstance>()
+
+let loading = ref(false)
+let tableData: Menu[] = []
+
+/**
+ * 获取表格数据
+ */
+const fetchTableData = () => {
+  loading.value = true
+  getMenuListApi({
+    name: searchForm.name
+  })
+    .then((res) => {
+      loading.value = false
+      tableData = res.data
+      if (tableRef.value) {
+        tableRef.value.doLayout()
+      }
+    })
+    .catch(() => {
+      loading.value = false
+    })
+}
+
 const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
-  await formEl.validate((valid, fields) => {
+  await formEl.validate((valid) => {
     if (valid) {
-      getMenuListApi({
-        pageIndex: 1,
-        pageSize: 10
-      })
-    } else {
-      console.log('error submit!', fields)
+      fetchTableData()
     }
   })
 }
@@ -95,57 +117,7 @@ const resetForm = (formEl: FormInstance | undefined) => {
   formEl.resetFields()
 }
 
-const tableRef = ref<TableInstance>()
-
-interface Menu {
-  id: number
-  parent_id: number
-  name: string
-  component: string
-  path: string
-  icon: string
-  sort: number
-  state: number
-  created_at: string
-  hasChildren?: boolean
-  children?: Menu[]
-}
-
-const tableData: Menu[] = [
-  {
-    id: 1,
-    parent_id: 0,
-    name: '系统设置',
-    component: '#',
-    path: '/system',
-    icon: '',
-    sort: 1,
-    state: 1,
-    created_at: '2024-08-01 17:20:00',
-    children: [
-      {
-        id: 2,
-        parent_id: 1,
-        name: '菜单管理',
-        component: 'views/menu/index',
-        path: 'menu',
-        icon: '',
-        sort: 1,
-        state: 1,
-        created_at: '2024-08-01 17:20:00'
-      },
-      {
-        id: 3,
-        parent_id: 1,
-        name: '权限管理',
-        component: 'views/permission/index',
-        path: 'permission',
-        icon: '',
-        sort: 1,
-        state: 1,
-        created_at: '2024-08-01 17:20:00'
-      }
-    ]
-  }
-]
+onMounted(() => {
+  fetchTableData()
+})
 </script>

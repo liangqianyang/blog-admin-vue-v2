@@ -1,6 +1,4 @@
 export interface MenuListParams {
-  pageSize: number
-  pageIndex: number
   name?: string
   state?: number
 }

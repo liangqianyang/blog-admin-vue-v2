@@ -1,5 +1,5 @@
 import request from '@/axios'
-import { MenuListParams, MenuListResponse } from './types'
+import { MenuListParams } from './types'
 export const getMenuListApi = (params: MenuListParams) => {
-  return request.get<MenuListResponse>({ url: '/v1/menu/list', params })
+  return request.get({ url: '/v1/menu/list', params })
 }
