@@ -140,7 +140,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       proxy: {
         // 选项写法
         '/api': {
-          target: 'http://blog-admin.lqy-comic.com',
+          target: 'http://lqy-comic.com:8080',
           changeOrigin: true,
           rewrite: path => path.replace(/^\/api/, '/api/')
         }
