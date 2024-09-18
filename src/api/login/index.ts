@@ -11,9 +11,6 @@ export const loginOutApi = (): Promise<IResponse> => {
 
 export const getNavbarMenuApi = (): Promise<IResponse<AppCustomRouteRecordRaw[]>> => {
   return request.get({
-    url: '/v1/menu/navbar',
-    headers: {
-      Authorization: 'Bearer 2|zzeSceGO7YZBIcNSR4sjanjB9UZsKOjGzPcFu1v5201850f7'
-    }
+    url: '/v1/menu/navbar'
   })
 }

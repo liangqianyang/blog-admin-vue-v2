@@ -242,6 +242,8 @@ const signIn = async () => {
             userStore.setLoginInfo(undefined)
           }
           userStore.setRememberMe(unref(remember))
+          let token = 'Bearer ' + res.data.token
+          userStore.setToken(token)
           userStore.setUserInfo(res.data)
           // 是否使用动态路由
           if (appStore.getDynamicRouter) {
@@ -262,7 +264,7 @@ const signIn = async () => {
   })
 }
 
-// 获取角色信息
+// 获取导航菜单
 const getNavbarMenu = async () => {
   const res = await getNavbarMenuApi()
   if (res) {

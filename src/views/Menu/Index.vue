@@ -94,6 +94,7 @@ const fetchTableData = () => {
     .then((res) => {
       loading.value = false
       tableData = res.data
+      console.log(res.data)
       if (tableRef.value) {
         tableRef.value.doLayout()
       }
