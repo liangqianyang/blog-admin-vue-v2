@@ -25,7 +25,6 @@
     style="width: 100%; margin-bottom: 20px"
     row-key="id"
     border
-    default-expand-all
   >
     <el-table-column prop="name" label="菜单名称" />
     <el-table-column prop="component" label="组件" />
