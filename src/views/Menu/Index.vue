@@ -14,6 +14,9 @@
       </el-col>
     </el-row>
   </el-form>
+  <div class="mb-4">
+    <el-button type="primary" @click="addDalogVisible = true">新增</el-button>
+  </div>
   <el-table
     v-loading="loading"
     ref="tableRef"
@@ -44,6 +47,7 @@
       </template>
     </el-table-column>
   </el-table>
+  <add-dialog v-model="addDalogVisible" @close="addDalogVisible = false" />
 </template>
 
 <script lang="ts" setup>
@@ -63,6 +67,7 @@ import {
 } from 'element-plus'
 import { reactive, ref, onMounted } from 'vue'
 import { Menu } from '../../api/menu/types'
+import AddDialog from './Add.vue'
 
 defineOptions({
   name: '菜单管理'
@@ -77,8 +82,9 @@ const searchForm = reactive<SearchForm>({
   name: '',
   state: 0
 })
-
 const tableRef = ref<TableInstance>()
+
+const addDalogVisible = ref(false)
 
 let loading = ref(false)
 let tableData: Menu[] = []
@@ -94,7 +100,6 @@ const fetchTableData = () => {
     .then((res) => {
       loading.value = false
       tableData = res.data
-      console.log(res.data)
       if (tableRef.value) {
         tableRef.value.doLayout()
       }
@@ -104,6 +109,9 @@ const fetchTableData = () => {
     })
 }
 
+/**
+ * 查询
+ */
 const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
   await formEl.validate((valid) => {
@@ -113,6 +121,9 @@ const submitForm = async (formEl: FormInstance | undefined) => {
   })
 }
 
+/**
+ * 重置
+ */
 const resetForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return
   formEl.resetFields()

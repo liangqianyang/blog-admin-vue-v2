@@ -10,7 +10,7 @@ export const constantRouterMap: AppRouteRecordRaw[] = [
   {
     path: '/',
     component: Layout,
-    redirect: '/level',
+    redirect: '/system/menu',
     name: 'Root',
     meta: {
       hidden: true
@@ -55,36 +55,7 @@ export const constantRouterMap: AppRouteRecordRaw[] = [
   }
 ]
 
-export const asyncRouterMap: AppRouteRecordRaw[] = [
-  {
-    path: '/system',
-    component: Layout,
-    redirect: '/system/menu',
-    name: '系统设置',
-    meta: {
-      title: '系统设置',
-      icon: 'carbon:setting-outlined'
-    },
-    children: [
-      {
-        path: 'menu',
-        name: '菜单管理',
-        component: () => import('@/views/Menu/Index.vue'),
-        meta: {
-          title: '菜单管理'
-        }
-      },
-      {
-        path: 'permission',
-        name: '权限管理',
-        component: () => import('@/views/Permission/Index.vue'),
-        meta: {
-          title: '权限管理'
-        }
-      }
-    ]
-  }
-]
+export const asyncRouterMap: AppRouteRecordRaw[] = []
 
 const router = createRouter({
   history: createWebHashHistory(),
