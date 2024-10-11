@@ -47,7 +47,11 @@
       </template>
     </el-table-column>
   </el-table>
-  <add-dialog v-model="addDalogVisible" @close="addDalogVisible = false" />
+  <add-dialog
+    v-model="addDalogVisible"
+    @close="addDalogVisible = false"
+    @refresh-menu="fetchTableData"
+  />
 </template>
 
 <script lang="ts" setup>
